@@ -35,7 +35,7 @@ angular.module('app', [
     $state.go('login');
   }
   $rootScope.loggedIn = function() {
-    !!session.get();
+    return !!session.get();
   }
 })
 
