@@ -1,0 +1,17 @@
+<div class="login" ng-controller="AuthCtrl">
+  <form ng-submit="signIn()">
+    <div class="form-group">
+      <label>Email</label>
+      <input class="form-control" ng-model="user" type="text" value="">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input class="form-control" ng-model="pass" type="password" value="">
+    </div>
+    <span class="pull-left" ng-style="helpStyle" ng-show="helpText">{{helpText}}</span>
+    <input class="btn btn-primary pull-right" ng-disabled="busy" type="submit" value="Sign in">
+  </form>
+</div>
+<div class="clearfix center">
+  <a ui-sref="forgotPassword()">Forgot password?</a>
+</div>

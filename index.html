@@ -1,10 +1,11 @@
-<html>
+<html ng-app="app">
 <head>
 <title>Example App</title>
 </head>
 <body>
-  <div class="container">
-  </div>
-  <script src="ui.js"></script>
+  <div class="container" ui-view></div>
+  <button ng-click="ipc('terminate')">Exit</button>
+  <button ng-click="ipc('toggleDevTools')">Toggle Dev Tools</button>
 </body>
 </html>
+<script src="ui/index.js"></script>
