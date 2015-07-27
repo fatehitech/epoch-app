@@ -1,4 +1,4 @@
-angular.module('ui.controllers.auth', [])
+angular.module('controllers.auth', [])
 
 .controller('AuthCtrl', function($scope, $state, session, api) {
   $scope.signIn = function() {

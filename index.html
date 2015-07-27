@@ -1,10 +1,12 @@
 <html ng-app="app">
 <head>
 <title>Example App</title>
+<link rel="stylesheet" type="text/css" href="ui/style/style.css">
 </head>
 <body>
   <div class="container" ui-view></div>
   <button ng-click="ipc('terminate')">Exit</button>
+  <button ng-if="loggedIn()" ng-click="destroySession()">Logout</button>
   <button ng-click="ipc('toggleDevTools')">Toggle Dev Tools</button>
 </body>
 </html>

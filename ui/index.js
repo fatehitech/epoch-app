@@ -1,6 +1,14 @@
 var path = require('path');
 var ipc = require('ipc');
 
+// disable mac swipe gesture
+document.addEventListener("touchmove", function(e) {
+  console.log('tochmoove');
+  e.preventDefault();
+  return false;
+}, false);
+
+
 angular = require('angular');
 require('angular-ui-router');
 
@@ -13,14 +21,21 @@ require('bulk-require')(path.join(__dirname, 'ui'), [
 
 angular.module('app', [
   'ui.router',
-  'ui.controllers.auth',
+  'controllers.auth',
   'services.session',
   'services.api',
 ])
 
-.run(function($rootScope) {
+.run(function($rootScope, session, $state) {
   $rootScope.ipc = function(cmd) {
     ipc.send(cmd);
+  }
+  $rootScope.destroySession = function() {
+    session.unset();
+    $state.go('login');
+  }
+  $rootScope.loggedIn = function() {
+    !!session.get();
   }
 })
 
@@ -35,21 +50,16 @@ angular.module('app', [
   $stateProvider
   .state('login', {
     url: '/login',
-    templateUrl: 'templates/login.html'
-  })
-  .state('init', {
-    url: '/init',
-    templateUrl: 'templates/init.html'
+    templateUrl: 'ui/templates/login.html'
   })
   .state('dash', {
     url: '/dash',
-    templateUrl: 'templates/dash.html'
+    templateUrl: 'ui/templates/dash.html'
   })
 
   if (session) { 
     apiProvider.setToken(session.token);
-    console.log(session.token);
-    $urlRouterProvider.otherwise('init');
+    $urlRouterProvider.otherwise('dash');
   } else {
     $urlRouterProvider.otherwise('login');
   }
