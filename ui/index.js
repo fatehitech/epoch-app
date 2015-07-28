@@ -55,6 +55,10 @@ angular.module('app', [
     url: '/login',
     templateUrl: 'ui/templates/login.html'
   })
+  .state('settings.idleTimer', {
+    url: '/idle-timer',
+    templateUrl: 'ui/templates/idle-timer.html'
+  })
 
   $urlRouterProvider.otherwise('dash');
 

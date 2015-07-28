@@ -1,8 +1,11 @@
 <button ui-sref="dash()">Back</button>
-<button ng-click="ipc('terminate')">Exit</button>
 <button ng-click="ipc('toggleDevTools')">Toggle Dev Tools</button>
 
 <button ng-show="loggedIn()" ng-click="destroySession()">Logout</button>
 <button ng-hide="loggedIn()" ui-sref="settings.login()">Login</button>
+
+<button ui-sref="settings.idleTimer()">Configure Idle Timer</button>
+
+<button ng-click="ipc('terminate')">Quit</button>
 
 <div ui-view></div>
