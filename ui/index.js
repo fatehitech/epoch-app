@@ -43,13 +43,17 @@ angular.module('app', [
   if (session) apiProvider.setToken(session.token);
 
   $stateProvider
-  .state('login', {
-    url: '/login',
-    templateUrl: 'ui/templates/login.html'
-  })
   .state('dash', {
     url: '/dash',
     templateUrl: 'ui/templates/dash.html',
+  })
+  .state('settings', {
+    url: '/settings',
+    templateUrl: 'ui/templates/settings.html'
+  })
+  .state('login', {
+    url: '/login',
+    templateUrl: 'ui/templates/login.html'
   })
 
   $urlRouterProvider.otherwise('dash');
