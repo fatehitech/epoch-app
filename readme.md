@@ -1,47 +1,47 @@
-# epoch app
+# Epoch Timer
 
-# instructions
+# Development
 
 - run `npm install`
 - run `npm run build` to make Example.app
 - run `npm start` to run app from CLI without building Example.app
 
-# Settings Button
+# Design
+
+## Settings Button
 
 * Login
 * Logout
 * Quit App
 * Idle Timer: Enabled/Disabled/Trigger Time (15 min default)
 
-# Cloud Feature
+## Cloud Feature
 
 * Ability to push sessions
 
-# Offline/Local Features
+## Offline/Local Features
 
 * Ability to export sessions as JSON
 
-# User Experience
+## User Experience
 
 * First thing on UI is a list of Projects
 
 * No projects? Plus button...
 
-## Adding a Project
+### Adding a Project
 
 Clicking Plus button reveals a dialog to enter Project Name
 
-* Every Project on Dash has 2 buttons
-An Info button
-A Start button
+* Every Project on Dash has 2 buttons: Start, Info
 
-# Info Button
+## Info Button
 
 Clicking Info Button takes you to another screen
 
 In that screen you see all tasks you did for that project in reverse chronological order
 
-## Session Details
+### Session Details
 
 Info button on each task shows details of the session:
 
@@ -50,7 +50,7 @@ Info button on each task shows details of the session:
 * duration
 * breaks, if any
 
-## Session Modification
+### Session Modification
 
 If you have not pushed your sessions, you can:
 
@@ -59,7 +59,7 @@ If you have not pushed your sessions, you can:
 * Add/remove breaks
 * Edit start/end time
 
-# Start button
+## Start button
 
 Automatically starts timer for that project in a new session (which shows up in the I tab)
 
