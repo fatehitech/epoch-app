@@ -10,7 +10,8 @@
     "dotclock": "^1.3.0",
     "menubar": "*",
     "moment": "^2.10.5",
-    "needle": "^0.10.0"
+    "needle": "^0.10.0",
+    "selectize": "^0.12.1"
   },
   "devDependencies": {
     "electron-packager": "^4.0.2",

@@ -2,6 +2,11 @@
   <div ng-repeat="session in sessions">
     session: {{formatSession(session)}}
   </div>
-  <button ng-click="clockIn()">Clock in</button>
-  <button ng-click="clockOut()">Clock out</button>
+  <button ng-hide="clockedIn()" ng-click="clockIn()">Clock in</button>
+  <button ng-show="clockedIn()"ng-click="clockOut()">Clock out</button>
+  client
+  project
+  task
+  notes
+  <input type="text" value="">
 </div>

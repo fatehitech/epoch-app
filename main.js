@@ -24,6 +24,6 @@ mb.on('ready', function ready () {
   });
 
   ipc.on('toggleDevTools', function() {
-    mb.window.toggleDevTools();
+    mb.window.toggleDevTools({detach: true});
   })
 })

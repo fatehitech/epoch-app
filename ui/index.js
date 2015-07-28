@@ -25,6 +25,7 @@ angular.module('app', [
   'controllers.dash',
   'services.session',
   'services.api',
+  'services.clock',
 ])
 
 .run(function($rootScope, session, $state) {

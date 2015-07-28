@@ -1,15 +1,15 @@
-var Clock = require('dotclock').Clock;
 var moment = require('moment');
-var ipc = require('ipc');
 
 angular.module('controllers.dash', [])
 
-.controller('DashCtrl', function($scope, session) {
-  $scope.sessions = [];
-  var clock = new Clock();
-  clock.load({ sessions: $scope.sessions })
+.controller('DashCtrl', function($scope, session, Clock) {
+  $scope.sessions = Clock.sessions()
 
   $scope.startTime = null;
+
+  $scope.clockedIn = function() {
+    return Clock.isOn();
+  }
 
   function pad(n, width, z) {
     z = z || '0';
@@ -38,23 +38,14 @@ angular.module('controllers.dash', [])
   var interval = null;
 
   $scope.clockIn = function() {
-    if (!clock.isOn()) {
-      // open a new session
-      clock.openNewSession();
-      ipc.send('clockedIn');
-      interval = setInterval(function() {
-        $scope.$apply();
-      }, 1000);
-    }
+    Clock.on()
+    interval = setInterval(function() {
+      $scope.$digest();
+    }, 1000);
   }
 
   $scope.clockOut = function() {
-    if (clock.isOn()) {
-      var last = clock.getLastSession()
-      // close last session by updating keys "end"
-      last.end();
-      clearInterval(interval);
-      ipc.send('clockedOut');
-    }
+    Clock.off()
+    clearInterval(interval);
   }
 });
