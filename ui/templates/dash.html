@@ -1,1 +1,7 @@
-dash!
+<div ng-controller="DashCtrl">
+  <div ng-repeat="session in sessions">
+    session: {{formatSession(session)}}
+  </div>
+  <button ng-click="clockIn()">Clock in</button>
+  <button ng-click="clockOut()">Clock out</button>
+</div>

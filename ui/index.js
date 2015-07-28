@@ -22,6 +22,7 @@ require('bulk-require')(path.join(__dirname, 'ui'), [
 angular.module('app', [
   'ui.router',
   'controllers.auth',
+  'controllers.dash',
   'services.session',
   'services.api',
 ])
@@ -54,7 +55,7 @@ angular.module('app', [
   })
   .state('dash', {
     url: '/dash',
-    templateUrl: 'ui/templates/dash.html'
+    templateUrl: 'ui/templates/dash.html',
   })
 
   if (session) { 
