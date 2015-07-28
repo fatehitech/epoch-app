@@ -48,6 +48,7 @@ angular.module('app', [
   apiProvider.setServer(apiBase);
 
   var session = sessionProvider.get();
+  if (session) apiProvider.setToken(session.token);
 
   $stateProvider
   .state('login', {
@@ -59,11 +60,6 @@ angular.module('app', [
     templateUrl: 'ui/templates/dash.html',
   })
 
-  if (session) { 
-    apiProvider.setToken(session.token);
-    $urlRouterProvider.otherwise('dash');
-  } else {
-    $urlRouterProvider.otherwise('login');
-  }
+  $urlRouterProvider.otherwise('dash');
 
 })
