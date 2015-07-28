@@ -1,5 +1,6 @@
 var Clock = require('dotclock').Clock;
 var moment = require('moment');
+var ipc = require('ipc');
 
 angular.module('controllers.dash', [])
 
@@ -34,31 +35,26 @@ angular.module('controllers.dash', [])
     }
   }
 
-
   var interval = null;
 
   $scope.clockIn = function() {
-    if (clock.isOn()) {
-      // throw if session already open
-      console.log("You're already clocked in. You must first clock `out`");
-    } else {
+    if (!clock.isOn()) {
       // open a new session
       clock.openNewSession();
-      console.log('clocked in');
+      ipc.send('clockedIn');
       interval = setInterval(function() {
         $scope.$apply();
       }, 1000);
     }
   }
+
   $scope.clockOut = function() {
     if (clock.isOn()) {
       var last = clock.getLastSession()
       // close last session by updating keys "end"
       last.end();
-      console.log("You clocked out after", last.diff('hours'), 'hours')
       clearInterval(interval);
-    } else {
-      console.log("Not clocked in")
+      ipc.send('clockedOut');
     }
   }
 });

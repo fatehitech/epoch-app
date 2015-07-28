@@ -11,6 +11,13 @@ var mb = menubar({
 mb.on('ready', function ready () {
   mb.tray.setImage('tray_icons/red.png');
 
+  ipc.on('clockedIn', function(name) {
+    mb.tray.setImage('tray_icons/green.png');
+  });
+
+  ipc.on('clockedOut', function(name) {
+    mb.tray.setImage('tray_icons/red.png');
+  });
 
   ipc.on('terminate', function() {
     mb.app.terminate()
