@@ -1,14 +1,6 @@
 var path = require('path');
 var ipc = require('ipc');
 
-// disable mac swipe gesture
-document.addEventListener("touchmove", function(e) {
-  console.log('tochmoove');
-  e.preventDefault();
-  return false;
-}, false);
-
-
 angular = require('angular');
 require('angular-ui-router');
 
