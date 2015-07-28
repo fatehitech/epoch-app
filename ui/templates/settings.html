@@ -1,7 +1,8 @@
-<div >
-Settings
 <button ui-sref="dash()">Back</button>
-  <button ng-click="ipc('terminate')">Exit</button>
-  <button ng-if="loggedIn()" ng-click="destroySession()">Logout</button>
-  <button ng-click="ipc('toggleDevTools')">Toggle Dev Tools</button>
-</div>
+<button ng-click="ipc('terminate')">Exit</button>
+<button ng-click="ipc('toggleDevTools')">Toggle Dev Tools</button>
+
+<button ng-show="loggedIn()" ng-click="destroySession()">Logout</button>
+<button ng-hide="loggedIn()" ui-sref="settings.login()">Login</button>
+
+<div ui-view></div>

@@ -9,6 +9,8 @@ var mb = menubar({
 })
 
 mb.on('ready', function ready () {
+  // dynamic icon is not supported
+  // https://github.com/maxogden/menubar/issues/23
   mb.tray.setImage('tray_icons/red.png');
 
   ipc.on('clockedIn', function(name) {

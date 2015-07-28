@@ -1,6 +1,7 @@
 var path = require('path');
 var ipc = require('ipc');
 
+$ = require('jquery');
 angular = require('angular');
 require('angular-ui-router');
 
@@ -26,7 +27,6 @@ angular.module('app', [
   }
   $rootScope.destroySession = function() {
     session.unset();
-    $state.go('login');
   }
   $rootScope.loggedIn = function() {
     return !!session.get();
@@ -51,7 +51,7 @@ angular.module('app', [
     url: '/settings',
     templateUrl: 'ui/templates/settings.html'
   })
-  .state('login', {
+  .state('settings.login', {
     url: '/login',
     templateUrl: 'ui/templates/login.html'
   })

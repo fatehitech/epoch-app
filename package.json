@@ -8,6 +8,7 @@
     "bluebird": "^2.9.34",
     "bulk-require": "^0.2.1",
     "dotclock": "^1.3.0",
+    "jquery": "^2.1.4",
     "menubar": "*",
     "moment": "^2.10.5",
     "needle": "^0.10.0",
