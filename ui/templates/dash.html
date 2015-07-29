@@ -1,11 +1,11 @@
 <div class="dash" ng-controller="DashCtrl">
-  <button ng-click="newProject()">Add Project</button>
+  <button ng-click="newProject()">New Project</button>
   <form class="project" ng-show="newProject.visible" ng-submit="save()" ng-controller="NewProjectCtrl">
     <input type="text" ng-model="form.name">
     <input type="submit" value="Save">
     <button ng-click="close($event)">Close</button>
   </form>
-  <div class="project" ng-repeat="project in projects" ng-controller="ProjectCtrl">
+  <div class="project" ng-repeat="project in projects track by project.uuid" ng-controller="ProjectCtrl">
     {{project.name}}
     <button ng-hide="clockedIn()" ng-click="clockIn(this)">Start</button>
     <button ng-show="clockedIn()" ng-click="pauseClock(this)">Pause</button>

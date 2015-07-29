@@ -1,22 +1,26 @@
+var uuid = require('uuid');
+
 angular.module('controllers.dash', [])
 
 .factory('Project', function(db) {
   return {
     all: function() {
-      return db('projects').cloneDeep();
+      return db('projects').map();
     },
-    insert: function(item) {
-      db._.extend(item, {
-        id: db('projects').size()+1,
+    insert: function(_item) {
+      var item = db._.extend({},{
+        uuid: uuid.v4(),
+        sessions: [],
         createdAt: new Date(),
         updatedAt: new Date()
-      });
+      }, _item);
+      console.log(item);
       db('projects').push(item);
     }
   }
 })
 
-.controller('DashCtrl', function($scope, Project, Clock) {
+.controller('DashCtrl', function($scope, Project, Clock, db) {
   $scope.projects = Project.all();
 
   $scope.newProject = function() {
@@ -24,18 +28,14 @@ angular.module('controllers.dash', [])
   }
   $scope.newProject.visible = false;
 
-  var clockedIn = false;
-
-  window.dash = $scope;
   $scope.clockIn = function($childScope) {
-    Clock.stopAll();
     $childScope.clock.on()
-    clockedIn = true;
+    db.save();
   }
 
   $scope.clockOut = function($childScope) {
     $childScope.clock.off()
-    clockedIn = false;
+    db.save();
   }
 })
 

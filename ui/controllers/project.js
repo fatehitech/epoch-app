@@ -1,8 +1,8 @@
 angular.module('controllers.project', [])
 
-.controller('ProjectCtrl', function($scope, Clock) {
+.controller('ProjectCtrl', function($scope, Clock, Project) {
 
-  $scope.clock = Clock.build();
+  $scope.clock = Clock.build({ sessions: $scope.project.sessions });
 
   $scope.startTime = null;
 

@@ -5,18 +5,16 @@ angular.module('services.clock', [])
 
 .factory('Clock', function() {
   var clocks = [];
+  var stopAllClocks = function() {
+    clocks.forEach(function(clock) {
+      clock.off();
+    });
+  }
   return {
-    stopAll: function() {
-      clocks.forEach(function(clock) {
-        if (clock.isOn()) clock.getLastSession().end();
-      });
-    },
-    build: function() {
-      var sessions = [];
+    build: function(params) {
       var clock = new Clock();
-      clock.load({ sessions: sessions })
-      clocks.push(clock);
-      return {
+      clock.load(params);
+      var iface = {
         sessions: function() {
           return sessions;
         },
@@ -24,6 +22,7 @@ angular.module('services.clock', [])
           return clock.isOn();
         },
         on: function() {
+          stopAllClocks();
           if (clock.isOn()) return false;
           // open a new session
           clock.openNewSession();
@@ -37,6 +36,8 @@ angular.module('services.clock', [])
           ipc.send('clockedOut');
         }
       }
+      clocks.push(iface)
+      return iface;
     }
   }
 })
