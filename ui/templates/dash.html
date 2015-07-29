@@ -1,13 +1,16 @@
-<div ng-controller="DashCtrl">
-  <button ui-sref="settings()">Settings</button>
-  <!--div ng-repeat="session in sessions">
-    session: {{formatSession(session)}}
-  </div-->
-  <!--button ng-hide="clockedIn()" ng-click="clockIn()">Clock in</button>
-  <button ng-show="clockedIn()"ng-click="clockOut()">Clock out</button-->
-  client
-  project
-  task
-  notes
-  <input type="text" value="">
+<div class="dash" ng-controller="DashCtrl">
+  <button ng-click="newProject()">Add Project</button>
+  <form class="project" ng-show="newProject.visible" ng-submit="save()" ng-controller="NewProjectCtrl">
+    <input type="text" ng-model="form.name">
+    <input type="submit" value="Save">
+    <button ng-click="close($event)">Close</button>
+  </form>
+  <div class="project" ng-repeat="project in projects" ng-controller="ProjectCtrl">
+    {{project.name}}
+    <button ng-hide="clockedIn()" ng-click="clockIn()">Start</button>
+    <button ng-show="clockedIn()"ng-click="pauseClock()">Pause</button>
+    <button ng-show="clockedIn()"ng-click="clockOut()">Stop</button>
+    <button ui-sref="projectInfo()">Info</button>
+  </div>
 </div>
+<button ui-sref="settings()">Settings</button>

@@ -1,16 +1,16 @@
 angular.module('services.session', [])
 
-.provider('session', function() {
+.provider('session', function(storageProvider) {
+  var storage = storageProvider;
   this.set = function(user) {
-    localStorage.setItem('session', JSON.stringify(user));
+    storage.set('session', user);
   },
   this.unset = function() {
-    localStorage.removeItem('session');
+    storage.unset('session');
   }
   this.get = function(attr) {
-    var json = localStorage.getItem('session');
-    if (json) {
-      var session = JSON.parse(json);
+    var session = storage.get('session');
+    if (session) {
       if (attr) return session[attr];
       return session;
     }

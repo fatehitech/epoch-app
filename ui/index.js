@@ -14,11 +14,13 @@ require('bulk-require')(path.join(__dirname, 'ui'), [
 
 angular.module('app', [
   'ui.router',
-  'controllers.auth',
-  'controllers.dash',
+  'services.storage',
   'services.session',
   'services.api',
   'services.clock',
+  'controllers.auth',
+  'controllers.dash',
+  'controllers.project',
 ])
 
 .run(function($rootScope, session, $state) {
