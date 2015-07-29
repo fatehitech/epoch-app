@@ -14,7 +14,6 @@ angular.module('controllers.dash', [])
         createdAt: new Date(),
         updatedAt: new Date()
       }, _item);
-      console.log(item);
       db('projects').push(item);
     }
   }
