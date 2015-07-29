@@ -23,6 +23,10 @@ angular.module('app', [
   'controllers.project',
 ])
 
+.service('db', function() {
+  return require('./db')
+})
+
 .run(function($rootScope, session, $state) {
   $rootScope.ipc = function(cmd) {
     ipc.send(cmd);

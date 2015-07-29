@@ -1,8 +1,6 @@
-var db = require('../../db');
-
 angular.module('controllers.dash', [])
 
-.factory('Project', function() {
+.factory('Project', function(db) {
   return {
     all: function() {
       return db('projects').cloneDeep();
@@ -18,13 +16,27 @@ angular.module('controllers.dash', [])
   }
 })
 
-.controller('DashCtrl', function($scope, Project) {
+.controller('DashCtrl', function($scope, Project, Clock) {
   $scope.projects = Project.all();
 
   $scope.newProject = function() {
     $scope.newProject.visible = true;
   }
   $scope.newProject.visible = false;
+
+  var clockedIn = false;
+
+  window.dash = $scope;
+  $scope.clockIn = function($childScope) {
+    Clock.stopAll();
+    $childScope.clock.on()
+    clockedIn = true;
+  }
+
+  $scope.clockOut = function($childScope) {
+    $childScope.clock.off()
+    clockedIn = false;
+  }
 })
 
 .controller('NewProjectCtrl', function($scope, Project) {
@@ -38,5 +50,6 @@ angular.module('controllers.dash', [])
   $scope.close = function(e) {
     e.preventDefault();
     $scope.$parent.newProject.visible = false;
+    $scope.form = {};
   }
 })

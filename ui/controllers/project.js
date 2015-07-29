@@ -2,12 +2,12 @@ angular.module('controllers.project', [])
 
 .controller('ProjectCtrl', function($scope, Clock) {
 
-  $scope.sessions = Clock.sessions()
+  $scope.clock = Clock.build();
 
   $scope.startTime = null;
 
   $scope.clockedIn = function() {
-    return Clock.isOn();
+    return $scope.clock.isOn();
   }
 
   function pad(n, width, z) {
@@ -36,15 +36,15 @@ angular.module('controllers.project', [])
 
   var interval = null;
 
-  $scope.clockIn = function() {
-    Clock.on()
-    interval = setInterval(function() {
-      $scope.$digest();
-    }, 1000);
-  }
+  //$scope.clockIn = function() {
+  //  $scope.clock.on()
+  //  interval = setInterval(function() {
+  //    $scope.$digest();
+  //  }, 1000);
+  //}
 
-  $scope.clockOut = function() {
-    Clock.off()
-    clearInterval(interval);
-  }
+  //$scope.clockOut = function() {
+  //  $scope.clock.off()
+  //  clearInterval(interval);
+  //}
 })
