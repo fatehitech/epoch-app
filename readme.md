@@ -15,14 +15,6 @@
 * Quit App
 * Idle Timer: Enabled/Disabled/Trigger Time (15 min default)
 
-## Cloud Feature
-
-* Ability to push sessions
-
-## Offline/Local Features
-
-* Ability to export sessions as JSON
-
 ## User Experience
 
 * First thing on UI is a list of Projects
@@ -70,3 +62,13 @@ Reveals Session Notes text area. unlimited chars, optional
 Reveals Pause button
 
 Reveals Stop button
+
+## Export
+
+* Logged in users can push sessions to API
+
+* All users can export sessions as JSON
+
+## Archive
+
+* Pushed or exported sessions can be archived.
