@@ -14,6 +14,7 @@ require('bulk-require')(path.join(__dirname, 'ui'), [
 
 angular.module('app', [
   'ui.router',
+  'factories.project',
   'services.storage',
   'services.session',
   'services.api',
@@ -21,6 +22,8 @@ angular.module('app', [
   'controllers.auth',
   'controllers.dash',
   'controllers.project',
+  'controllers.new-project',
+  'controllers.project-info',
 ])
 
 .service('db', function() {
@@ -52,6 +55,10 @@ angular.module('app', [
   .state('dash', {
     url: '/dash',
     templateUrl: 'ui/templates/dash.html',
+  })
+  .state('projectInfo', {
+    url: '/project/{uuid}/info',
+    templateUrl: 'ui/templates/project-info.html'
   })
   .state('settings', {
     url: '/settings',

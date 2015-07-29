@@ -8,9 +8,9 @@
   <div class="project" ng-repeat="project in projects track by project.uuid" ng-controller="ProjectCtrl">
     {{project.name}}
     <button ng-hide="clockedIn()" ng-click="clockIn(this)">Start</button>
-    <button ng-show="clockedIn()" ng-click="pauseClock(this)">Pause</button>
+    <!--button ng-show="clockedIn()" ng-click="pauseClock(this)">Pause</button-->
     <button ng-show="clockedIn()" ng-click="clockOut(this)">Stop</button>
-    <button ui-sref="projectInfo()">Info</button>
+    <button ui-sref="projectInfo({ uuid: project.uuid })">Info</button>
   </div>
 </div>
 <button ui-sref="settings()">Settings</button>
