@@ -11,6 +11,7 @@ angular.module('services.clock', [])
     });
   }
   return {
+    stopAll: stopAllClocks,
     build: function(params) {
       var clock = new Clock();
       clock.load(params);

@@ -30,9 +30,14 @@ angular.module('app', [
   return require('./db')
 })
 
-.run(function($rootScope, session, $state) {
-  $rootScope.ipc = function(cmd) {
-    ipc.send(cmd);
+.run(function($rootScope, session, $state, Clock, db) {
+  $rootScope.toggleDevTools = function(cmd) {
+    ipc.send('toggleDevTools');
+  }
+  $rootScope.quitApp = function() {
+    Clock.stopAll();
+    db.save();
+    ipc.send('terminate');
   }
   $rootScope.destroySession = function() {
     session.unset();
