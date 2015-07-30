@@ -36,7 +36,7 @@ angular.module('app', [
   }
   $rootScope.quitApp = function() {
     Clock.stopAll();
-    db.save();
+    db.saveSync();
     ipc.send('terminate');
   }
   $rootScope.destroySession = function() {
