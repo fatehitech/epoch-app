@@ -8,13 +8,15 @@ angular.module('controllers.dash', [])
   }
   $scope.newProject.visible = false;
 
-  $scope.clockIn = function(clock) {
-    clock.on()
+  $scope.clockIn = function(project) {
+    Clock.find({ uuid: project.uuid }).on();
+    project.updatedAt = new Date();
     db.save();
   }
 
-  $scope.clockOut = function(clock) {
-    clock.off()
+  $scope.clockOut = function(project) {
+    Clock.find({ uuid: project.uuid }).off();
+    project.updatedAt = new Date();
     db.save();
   }
 })
