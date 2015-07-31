@@ -16,7 +16,6 @@ angular.module('controllers.dash', [])
 
   $scope.clockOut = function(project) {
     Clock.find({ uuid: project.uuid }).off();
-    project.updatedAt = new Date();
     db.save();
   }
 })
