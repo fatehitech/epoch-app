@@ -1,4 +1,5 @@
 var Clock = require('dotclock').Clock;
+var _ = require('lodash');
 var ipc = require('ipc');
 
 angular.module('services.clock', [])
@@ -11,11 +12,21 @@ angular.module('services.clock', [])
     });
   }
   return {
+    find: function(matcher) {
+      return _.find(clocks, matcher);
+    },
     stopAll: stopAllClocks,
-    build: function(params) {
+    build: function(params, uuid) {
       var clock = new Clock();
-      clock.load(params);
       var iface = {
+        uuid: uuid,
+        clearInterval: function() {
+          if (iface.interval) clearInterval(iface.interval);
+        },
+        setInterval: function(cb, ms) {
+          iface.clearInterval();
+          iface.interval = setInterval(cb, ms);
+        },
         sessions: function() {
           return sessions;
         },
@@ -35,8 +46,10 @@ angular.module('services.clock', [])
           // close last session by updating keys "end"
           last.end();
           ipc.send('clockedOut');
+          iface.clearInterval();
         }
       }
+      clock.load(params);
       clocks.push(iface)
       return iface;
     }

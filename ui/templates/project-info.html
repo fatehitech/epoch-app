@@ -2,6 +2,6 @@
 <div ng-controller="ProjectInfoCtrl">
 {{project.name}}
 <div ng-repeat="session in project.sessions track by $index">
-  session {{formatSession(project.sessions)}}
+  session {{formatSession(session)}}
 </div>
 </div>
