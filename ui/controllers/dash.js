@@ -8,13 +8,13 @@ angular.module('controllers.dash', [])
   }
   $scope.newProject.visible = false;
 
-  $scope.clockIn = function($childScope) {
-    $childScope.clock.on()
+  $scope.clockIn = function(clock) {
+    clock.on()
     db.save();
   }
 
-  $scope.clockOut = function($childScope) {
-    $childScope.clock.off()
+  $scope.clockOut = function(clock) {
+    clock.off()
     db.save();
   }
 })
