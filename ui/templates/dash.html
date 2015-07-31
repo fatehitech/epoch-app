@@ -5,7 +5,7 @@
     <input type="submit" value="Save">
     <button ng-click="close($event)">Close</button>
   </form>
-  <div class="project" ng-repeat="project in projects | orderBy:'-updatedAt' track by project.uuid" ng-controller="ProjectCtrl">
+  <div class="project" ng-repeat="project in projects | date:'updatedAt' | orderBy:'-updatedAt' track by project.uuid" ng-controller="ProjectCtrl">
     {{project.name}}
     <button ng-hide="clockedIn()" ng-click="clockIn(project)">Start</button>
     <!--button ng-show="clockedIn()" ng-click="pauseClock(this)">Pause</button-->

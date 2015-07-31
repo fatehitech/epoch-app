@@ -14,6 +14,9 @@ require('bulk-require')(path.join(__dirname, 'ui'), [
 
 angular.module('app', [
   'ui.router',
+  'filters.duration',
+  'filters.reverse',
+  'filters.date',
   'factories.project',
   'services.storage',
   'services.session',

@@ -1,7 +1,7 @@
 <button ui-sref="dash()">Back</button>
 <div ng-controller="ProjectInfoCtrl">
 {{project.name}}
-<div ng-repeat="session in project.sessions | reverse track by $index">
-  session {{formatSession(session)}}
+<div ng-repeat="session in project.sessions | duration | reverse track by $index">
+  session {{ session  }}
 </div>
 </div>
