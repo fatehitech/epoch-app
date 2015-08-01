@@ -2,7 +2,7 @@ var moment = require('moment');
 
 angular.module('filters.duration', [])
 
-.filter('duration', function() {
+.filter('setDuration', function() {
   function pad(n, width, z) {
     z = z || '0';
     n = n + '';
@@ -26,6 +26,9 @@ angular.module('filters.duration', [])
     }
   }
   return function(sessions) {
-    return sessions.map(duration);
+    return sessions.map(function(s) {
+      s.duration = duration(s);
+      return s
+    });
   }
 })

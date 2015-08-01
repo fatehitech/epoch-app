@@ -35,7 +35,7 @@ In that screen you see all tasks you did for that project in reverse chronologic
 
 ### Session Details
 
-Info button on each task shows details of the session:
+Info button on each session shows details of the session:
 
 * start time
 * end time
