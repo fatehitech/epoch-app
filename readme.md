@@ -35,12 +35,11 @@ In that screen you see all tasks you did for that project in reverse chronologic
 
 ### Session Details
 
-Info button on each session shows details of the session:
+Each session has the following details
 
 * start time
 * end time
 * duration
-* breaks, if any
 
 ### Session Modification
 
@@ -48,7 +47,7 @@ If you have not pushed your sessions, you can:
 
 * Edit the title
 * Edit the notes
-* Add/remove breaks
+* Merge sessions
 * Edit start/end time
 
 ## Start button

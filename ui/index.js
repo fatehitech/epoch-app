@@ -14,7 +14,7 @@ require('bulk-require')(path.join(__dirname, 'ui'), [
 
 angular.module('app', [
   'ui.router',
-  'filters.duration',
+  'filters.normalize-sessions',
   'filters.reverse',
   'filters.date',
   'factories.project',
@@ -34,12 +34,15 @@ angular.module('app', [
 })
 
 .run(function($rootScope, session, $state, Clock, db) {
+  window.onbeforeunload = function() {
+    Clock.stopAll();
+    db.saveSync();
+    return true;
+  }
   $rootScope.toggleDevTools = function(cmd) {
     ipc.send('toggleDevTools');
   }
   $rootScope.quitApp = function() {
-    Clock.stopAll();
-    db.saveSync();
     ipc.send('terminate');
   }
   $rootScope.destroySession = function() {

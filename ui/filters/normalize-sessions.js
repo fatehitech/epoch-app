@@ -1,8 +1,8 @@
 var moment = require('moment');
 
-angular.module('filters.duration', [])
+angular.module('filters.normalize-sessions', [])
 
-.filter('setDuration', function() {
+.filter('normalizeSessions', function() {
   function pad(n, width, z) {
     z = z || '0';
     n = n + '';
@@ -27,7 +27,9 @@ angular.module('filters.duration', [])
   }
   return function(sessions) {
     return sessions.map(function(s) {
+      s.start = new Date(s.start);
       s.duration = duration(s);
+      if (s.end) s.end = new Date(s.end);
       return s
     });
   }
