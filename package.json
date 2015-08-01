@@ -1,7 +1,7 @@
 {
-  "name": "example-menubar-app",
+  "name": "epoch-app",
   "version": "1.0.0",
-  "description": "example menubar electron app",
+  "description": "freelancer toolkit",
   "dependencies": {
     "angular": "^1.4.3",
     "angular-ui-router": "^0.2.15",
@@ -12,7 +12,6 @@
     "jquery": "^2.1.4",
     "lodash": "^3.10.0",
     "lowdb": "^0.10.2",
-    "menubar": "*",
     "moment": "^2.10.5",
     "needle": "^0.10.0",
     "selectize": "^0.12.1",
@@ -24,7 +23,7 @@
   },
   "main": "main.js",
   "scripts": {
-    "build": "electron-packager . Example --platform=darwin --arch=x64 --version=0.26.0 --ignore=node_modules/electron --icon=Icon.icns",
+    "build": "electron-packager . Epoch --platform=darwin --arch=x64 --version=0.26.0 --ignore=node_modules/electron --icon=Icon.icns --overwrite",
     "start": "electron ."
   }
 }
