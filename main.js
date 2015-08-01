@@ -9,19 +9,10 @@ var BrowserWindow = require('browser-window')
 
 app.on('ready', function ready () {
 
-  app.on('window-all-closed', function() {
-    //app.quit();
-  });
-
-  win = new BrowserWindow({
+  var win = new BrowserWindow({
     width: 400,
     height: 600,
     show: false,
-  });
-
-  win.on('close', function(e) {
-    e.preventDefault();
-    win.hide()
   });
 
   win.webContents.on('did-finish-load', function() {
@@ -49,9 +40,20 @@ app.on('ready', function ready () {
   tray = new Tray(__dirname+'/tray_icons/red.png')
 
   var menu = new Menu();
-  menu.append(new MenuItem({ label: 'Show', click: function() { 
-    win.show()
-  } }));
+
+  menu.append(new MenuItem({
+    label: 'Show',
+    click: function() { 
+      win.show()
+    }
+  }));
+
+  menu.append(new MenuItem({
+    label: 'Quit',
+    click: function() { 
+      app.quit()
+    }
+  }));
 
   tray.setContextMenu(menu);
 
