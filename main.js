@@ -10,9 +10,10 @@ var BrowserWindow = require('browser-window')
 app.on('ready', function ready () {
 
   var win = new BrowserWindow({
-    width: 400,
-    height: 600,
+    width: 300,
+    height: 300,
     show: false,
+    frame: false,
   });
 
   win.webContents.on('did-finish-load', function() {
