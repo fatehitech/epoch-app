@@ -9,13 +9,19 @@ var BrowserWindow = require('browser-window')
 
 app.on('ready', function ready () {
 
+  app.on('window-all-closed', function() {
+    //app.quit();
+  });
+
   win = new BrowserWindow({
     width: 400,
     height: 600,
     show: false,
   });
-  win.on('closed', function() {
-    win = null;
+
+  win.on('close', function(e) {
+    e.preventDefault();
+    win.hide()
   });
 
   win.webContents.on('did-finish-load', function() {
@@ -33,20 +39,12 @@ app.on('ready', function ready () {
   });
 
   ipc.on('terminate', function() {
-    app.terminate()
+    app.quit()
   });
 
   ipc.on('toggleDevTools', function() {
     win.toggleDevTools({detach: true});
   })
-
-  win.on('close', function() {
-    win.hide();
-  });
-
-  app.on('window-all-closed', function() {
-    //app.quit();
-  });
 
   tray = new Tray(__dirname+'/tray_icons/red.png')
 
